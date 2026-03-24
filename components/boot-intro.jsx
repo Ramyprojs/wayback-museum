@@ -38,11 +38,11 @@ export function BootIntro() {
   }
 
   return (
-    <div className="fixed inset-0 z-[90] bg-black p-4 text-retro-lime">
+    <div className="boot-screen fixed inset-0 z-[90] bg-black p-4 text-retro-lime">
       <div className="retro-panel mx-auto mt-14 max-w-3xl p-5">
         <p className="font-pixel text-[10px] text-retro-yellow">WAYBACK MUSEUM BIOS v1.99</p>
         <div className="mt-6 flex justify-center">
-          <div className="h-20 w-40 border border-slate-200 bg-[#050910] p-2">
+          <div className="boot-screen__logo h-20 w-40 border border-slate-200 bg-[#050910] p-2">
             <div className={`h-full w-full bg-[radial-gradient(circle_at_center,#36d1ff_8%,#14224f_70%)] ${stage >= 1 ? "animate-pulse" : "opacity-40"}`} />
           </div>
         </div>

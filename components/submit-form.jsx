@@ -100,7 +100,7 @@ export function SubmitForm() {
         />
       </Field>
 
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="form-grid grid gap-3 sm:grid-cols-2">
         <Field label="Years Active From">
           <input
             required

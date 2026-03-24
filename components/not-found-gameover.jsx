@@ -26,10 +26,10 @@ export function NotFoundGameOver() {
   }, [countdown, router]);
 
   return (
-    <section className="flex min-h-[70vh] items-center justify-center pt-6">
+    <section className="game-over-screen flex min-h-[70vh] items-center justify-center pt-6">
       <div className="retro-panel w-full max-w-2xl p-5 text-center">
         <h1 className="font-pixel text-sm text-retro-pink">GAME OVER</h1>
-        <div className="mx-auto mt-4 h-20 w-20 rounded-t-[32px] border-2 border-slate-200 bg-[#0a1239]" />
+        <div className="game-over-screen__logo mx-auto mt-4 h-20 w-20 rounded-t-[32px] border-2 border-slate-200 bg-[#0a1239]" />
         <p className="mt-3 text-3xl text-retro-electric">404 :: This page has vanished.</p>
         <p className="mt-2 text-2xl text-retro-lime">Score: {score} exhibits viewed</p>
         <p className="mt-2 text-3xl text-retro-yellow">CONTINUE? {countdown}</p>

@@ -21,7 +21,7 @@ export default async function HomePage() {
   return (
     <>
       <BootIntro />
-      <section className="retro-panel mt-4 grid gap-2 p-3 sm:grid-cols-4">
+      <section className="retro-panel stat-grid mt-4 grid gap-2 p-3 sm:grid-cols-4">
         <Stat label="Total Exhibits" value={String(stats.totalExhibits)} />
         <Stat label="Years Covered" value={String(stats.totalYears)} />
         <Stat label="Community Memories" value={String(stats.totalMemories)} />

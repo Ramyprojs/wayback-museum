@@ -158,7 +158,7 @@ export function ArchiveBrowser({ exhibits }) {
 
         <section className="retro-panel p-3">
           <p className="font-pixel text-[10px] text-retro-yellow">Comparison Mode</p>
-          <div className="mt-2 grid gap-2 md:grid-cols-2">
+          <div className="comparison-grid mt-2 grid gap-2 md:grid-cols-2">
             <select value={compareA} onChange={(e) => setCompareA(e.target.value)} className="border-2 border-[#f8f8f8] bg-[#0b1232] p-2 text-xl">
               <option value="">Select site A</option>
               {filtered.map((item) => (
@@ -173,7 +173,7 @@ export function ArchiveBrowser({ exhibits }) {
             </select>
           </div>
           {compareExhibitA && compareExhibitB ? (
-            <div className="mt-3 grid gap-3 md:grid-cols-2">
+            <div className="comparison-grid mt-3 grid gap-3 md:grid-cols-2">
               <CompareCard exhibit={compareExhibitA} />
               <CompareCard exhibit={compareExhibitB} />
             </div>
@@ -183,25 +183,27 @@ export function ArchiveBrowser({ exhibits }) {
         {showConnections ? (
           <section className="retro-panel overflow-auto p-3">
             <p className="font-pixel text-[10px] text-retro-yellow">Connections (sample graph)</p>
-            <svg width="980" height="380" viewBox="0 0 980 380" className="mt-2">
-              {nodeData.slice(0, -1).map((node, idx) => (
-                <line
-                  key={`line-${node.slug}`}
-                  x1={node.x}
-                  y1={node.y}
-                  x2={nodeData[idx + 1].x}
-                  y2={nodeData[idx + 1].y}
-                  stroke="#36d1ff"
-                  strokeDasharray="4 3"
-                />
-              ))}
-              {nodeData.map((node) => (
-                <g key={`node-${node.slug}`}>
-                  <circle cx={node.x} cy={node.y} r="18" fill="#ff2bd6" />
-                  <text x={node.x + 24} y={node.y + 5} fill="#dff9ff" fontSize="18">{node.name}</text>
-                </g>
-              ))}
-            </svg>
+            <div className="connections-view overflow-x-auto">
+              <svg width="980" height="380" viewBox="0 0 980 380" className="mt-2 min-w-full">
+                {nodeData.slice(0, -1).map((node, idx) => (
+                  <line
+                    key={`line-${node.slug}`}
+                    x1={node.x}
+                    y1={node.y}
+                    x2={nodeData[idx + 1].x}
+                    y2={nodeData[idx + 1].y}
+                    stroke="#36d1ff"
+                    strokeDasharray="4 3"
+                  />
+                ))}
+                {nodeData.map((node) => (
+                  <g key={`node-${node.slug}`}>
+                    <circle cx={node.x} cy={node.y} r="18" fill="#ff2bd6" />
+                    <text x={node.x + 24} y={node.y + 5} fill="#dff9ff" fontSize="18">{node.name}</text>
+                  </g>
+                ))}
+              </svg>
+            </div>
           </section>
         ) : null}
 

@@ -414,3 +414,292 @@ summary {
     transform: none;
   }
 }
+
+/* ===== MOBILE RESPONSIVE STYLES ===== */
+
+/* Touch-friendly button targets on mobile */
+@media (max-width: 768px) {
+  .retro-button,
+  button,
+  a[role='button'] {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 10px 14px;
+  }
+
+  /* Music player repositioning for mobile */
+  .music-player {
+    right: 8px;
+    bottom: 74px;
+    width: 240px;
+    font-size: 12px;
+  }
+
+  /* Low battery LED repositioning for mobile */
+  .low-battery-led {
+    right: 8px;
+    top: 68px;
+  }
+
+  /* Boot introduction mobile optimization */
+  .boot-screen {
+    padding: 12px;
+  }
+
+  .boot-screen .retro-panel {
+    margin-top: 8px;
+    max-width: 100%;
+  }
+
+  .boot-screen__logo {
+    height: 16px;
+    width: 32px;
+  }
+
+  /* Responsive SVG for connections */
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Form inputs with better touch targets */
+  input[type='text'],
+  input[type='email'],
+  input[type='number'],
+  select,
+  textarea {
+    padding: 12px 10px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    min-height: 44px;
+  }
+
+  /* Grid adjustments for small screens */
+  .retro-panel {
+    padding: 12px;
+  }
+
+  /* Adjust font sizes slightly for readability on mobile */
+  body {
+    font-size: 14px;
+  }
+
+  .gb-loading__cell {
+    height: 10px;
+  }
+
+  .gb-loading__bar {
+    grid-template-columns: repeat(20, minmax(0, 1fr));
+    gap: 1px;
+  }
+
+  /* Sidebar sprites hide on very small screens */
+  .gb-sidebar-sprites {
+    grid-template-columns: repeat(2, 18px);
+    gap: 6px;
+  }
+}
+
+/* Extra small screens - single column everything */
+@media (max-width: 480px) {
+  .retro-button,
+  button,
+  a[role='button'] {
+    padding: 10px 12px;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='number'],
+  select,
+  textarea {
+    padding: 10px 8px;
+    font-size: 16px;
+  }
+
+  .music-player {
+    width: 220px;
+    right: 4px;
+    bottom: 70px;
+  }
+
+  .retro-panel {
+    padding: 10px;
+  }
+
+  .gb-sidebar-sprites {
+    display: none;
+  }
+
+  /* Reduce card animation translateY on mobile for more space */
+  @keyframes gbCardIn {
+    0% {
+      opacity: 0;
+      transform: translateY(24px) scale(0.98);
+    }
+    72% {
+      opacity: 1;
+      transform: translateY(-4px) scale(1.01);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Responsive grid columns for small screens */
+  .museum-grid {
+    gap: 12px;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .music-player {
+    width: 230px;
+  }
+
+  .graveyard-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large screens optimizations */
+@media (min-width: 1024px) {
+  .music-player {
+    width: 250px;
+  }
+
+  /* Ensure proper staggering on desktop */
+  .gb-card.in-view {
+    animation: gbCardIn 560ms var(--gb-delay, 0ms) cubic-bezier(0.2, 1.35, 0.22, 1) forwards;
+  }
+}
+
+/* Fix taskbar dropdown on mobile */
+@media (max-width: 680px) {
+  .taskbar-settings {
+    position: fixed;
+    right: 0;
+    top: auto;
+    bottom: 62px;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    margin: 0;
+    z-index: 100;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+
+  .taskbar-settings.retro-panel {
+    box-shadow: 0 -2px 0 #000;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+/* Graveyard board responsive adjustments */
+@media (max-width: 768px) {
+  .graveyard-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .graveyard-content {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* Game Over screen improvements */
+@media (max-width: 680px) {
+  .game-over-screen {
+    padding: 12px;
+  }
+
+  .game-over-screen .retro-panel {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .game-over-screen__logo {
+    height: 16px;
+    width: 32px;
+    margin: 12px auto;
+  }
+}
+
+/* Connections view responsive */
+@media (max-width: 900px) {
+  .connections-view svg {
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+  }
+}
+
+/* Memory/Submit forms - stacked on mobile */
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .form-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Marquee text size adjustment for mobile */
+@media (max-width: 680px) {
+  .marquee-track {
+    font-size: 14px;
+  }
+}
+
+/* Archive comparison mode responsive */
+@media (max-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Improve readability of small stats on mobile */
+@media (max-width: 680px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px;
+  }
+
+  .stat-item {
+    padding: 8px;
+  }
+
+  .stat-item p {
+    font-size: 12px;
+  }
+}
+
+/* Hover states only on non-touch devices */
+@media (hover: hover) {
+  .retro-button:hover {
+    filter: brightness(1.1);
+  }
+
+  .tombstone-card:hover {
+    filter: brightness(0.75);
+  }
+}
+
+/* Touch-only devices - remove hover animations */
+@media (hover: none) {
+  .retro-button:active {
+    filter: brightness(0.9);
+  }
+
+  .tombstone-card:active {
+    filter: brightness(0.6);
+  }
+}

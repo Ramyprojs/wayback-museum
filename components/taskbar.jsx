@@ -65,7 +65,7 @@ export function Taskbar() {
               Settings
             </button>
             {settingsOpen ? (
-              <div className="retro-panel absolute right-0 top-9 z-[70] w-[240px] space-y-2 p-2 text-[#dff9ff]">
+              <div className="taskbar-settings retro-panel absolute right-0 top-9 z-[70] w-[240px] space-y-2 p-2 text-[#dff9ff] md:absolute md:right-0 md:top-9 md:w-[240px]">
                 <label className="block text-xl">
                   <span className="text-retro-yellow">Volume</span>
                   <input
