@@ -1,100 +1,72 @@
-# Mood-to-Movie
+# Wayback Museum
 
-A polished single-page web app that recommends movies based on how you feel.
+Wayback Museum is a handcrafted "Dead Websites Museum" built with Next.js 14 (App Router), Tailwind CSS, and Supabase.
 
-You describe your mood in plain text, tweak a few vibe sliders, and the app uses Anthropic to return 3 to 5 tailored movie picks with short personalized reasons.
+## Highlights
 
-## Features
+- Deep 1999-inspired visual style: CRT scanlines, taskbar, flicker, marquee, beveled controls
+- Boot intro screen with skip action
+- Archive browser with search, filters, and sorting
+- Full exhibit detail pages with history, stats, links, and community memories
+- Community memory submissions saved to Supabase
+- Submit-an-entry form stored in Supabase `pending_submissions`
+- Custom retro 404 page and floppy-disk favicon
 
-- Minimal, cinematic single-page experience
-- Mood-based recommendations powered by Anthropic API
-- Vibe dial sliders:
-	- Energy level
-	- Emotional openness
-	- Watching alone vs group
-- Smart recommendation cards with:
-	- Title
-	- Year
-	- Why it fits your current mood
-	- Content note
-- Local watch history (stored in browser `localStorage`)
+## Tech
 
-## Tech Stack
-
-- Node.js + Express backend
-- Anthropic SDK (`@anthropic-ai/sdk`)
-- Vanilla HTML/CSS/JS frontend
+- Next.js 14 App Router
+- Tailwind CSS + custom CSS effects
+- Supabase PostgreSQL
 
 ## Setup
 
-1. Install dependencies:
+1. Install dependencies
 
 ```bash
 npm install
 ```
 
-2. Create environment file:
+2. Configure env
 
 ```bash
 cp .env.example .env
 ```
 
-3. Add your Anthropic key in `.env`:
+Set:
 
 ```env
-ANTHROPIC_API_KEY=your_api_key_here
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+SUPABASE_SERVICE_ROLE_KEY=...
 ```
 
-4. Start the app:
+3. Create schema and seed data in Supabase SQL editor
+
+Run [db/schema.sql](db/schema.sql) first, then [db/seed.sql](db/seed.sql).
+
+4. Start dev server
 
 ```bash
-npm start
+npm run dev
 ```
 
-5. Open:
+5. Open
 
-```text
 http://localhost:3000
+
+## Production
+
+```bash
+npm run build
+npm run start
 ```
 
-## Scripts
+## Data Model
 
-- `npm start` - Run production server
-- `npm run dev` - Run server with auto-reload via nodemon
+Tables:
 
-## API
+- exhibits
+- community_memories
+- pending_submissions
 
-### `POST /api/recommendations`
-
-Request body:
-
-```json
-{
-	"mood": "I'm stressed and want something cozy and funny",
-	"vibe": {
-		"energy": 35,
-		"openness": 60,
-		"social": 20
-	}
-}
-```
-
-Response shape:
-
-```json
-{
-	"recommendations": [
-		{
-			"title": "Amelie",
-			"year": 2001,
-			"reason": "Whimsical warmth and gentle humor can lower stress without demanding heavy focus.",
-			"contentNote": "Light romance themes"
-		}
-	]
-}
-```
-
-## Notes
-
-- The API key is used only on the server and never exposed to the browser.
-- If no API key is configured, the app will return a clear setup error message.
+Schema is in [db/schema.sql](db/schema.sql).

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 80">
+  <rect width="640" height="80" fill="#111"/>
+  <g font-family="Courier New" font-size="28" font-weight="700">
+    <rect x="10" y="10" width="620" height="60" fill="#ffea00"/>
+    <text x="24" y="50" fill="#111">UNDER CONSTRUCTION :: UNDER CONSTRUCTION :: UNDER CONSTRUCTION</text>
+  </g>
+</svg>
