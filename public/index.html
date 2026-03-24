@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mood-to-Movie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-noise" aria-hidden="true"></div>
+    <main class="layout">
+      <header class="hero">
+        <p class="hero-tag">Mood-first cinema finder</p>
+        <h1>Mood-to-Movie</h1>
+        <p class="hero-copy">
+          Tell us how you feel right now. We will match your exact emotional vibe to a set of films that fit tonight.
+        </p>
+      </header>
+
+      <section class="panel input-panel">
+        <label for="moodInput" class="label">How are you feeling?</label>
+        <textarea
+          id="moodInput"
+          placeholder="Examples: I am overwhelmed and need something comforting but still witty."
+          rows="4"
+        ></textarea>
+
+        <div class="preset-row">
+          <button class="preset-chip" data-text="I am stressed and want something cozy and funny.">Cozy + funny</button>
+          <button class="preset-chip" data-text="I feel reflective and want a beautiful slow-burn drama.">Reflective</button>
+          <button class="preset-chip" data-text="I need high-energy, clever, and stylish.">High-energy</button>
+        </div>
+
+        <div class="vibe-grid">
+          <div class="slider-wrap">
+            <div class="slider-head">
+              <span>Energy</span>
+              <output id="energyValue">50</output>
+            </div>
+            <input id="energy" type="range" min="0" max="100" value="50" />
+          </div>
+
+          <div class="slider-wrap">
+            <div class="slider-head">
+              <span>Emotional openness</span>
+              <output id="opennessValue">50</output>
+            </div>
+            <input id="openness" type="range" min="0" max="100" value="50" />
+          </div>
+
+          <div class="slider-wrap">
+            <div class="slider-head">
+              <span>Alone <span class="faint">to</span> Group</span>
+              <output id="socialValue">50</output>
+            </div>
+            <input id="social" type="range" min="0" max="100" value="50" />
+          </div>
+        </div>
+
+        <button id="recommendBtn" class="cta">Find my movies</button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="panel results-panel">
+        <div class="section-head">
+          <h2>Tonight's picks</h2>
+          <button id="saveHistoryBtn" class="ghost" disabled>Save session</button>
+        </div>
+        <div id="results" class="results"></div>
+      </section>
+
+      <section class="panel history-panel">
+        <div class="section-head">
+          <h2>Watch history</h2>
+          <button id="clearHistoryBtn" class="ghost warn">Clear</button>
+        </div>
+        <div id="history" class="history"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

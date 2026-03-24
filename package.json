@@ -1,0 +1,26 @@
+{
+  "name": "mood-to-movie",
+  "version": "1.0.0",
+  "description": "Mood-based movie recommender powered by Anthropic",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "movies",
+    "recommendations",
+    "anthropic",
+    "mood"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
