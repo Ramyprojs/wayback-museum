@@ -1,4 +1,4 @@
-export const fallbackExhibits = [
+const baseExhibits = [
   {
     slug: "geocities",
     name: "GeoCities",
@@ -551,28 +551,1034 @@ export const fallbackExhibits = [
   }
 ];
 
-export const marqueeSites = [
-  "GeoCities",
-  "Napster",
-  "AltaVista",
-  "Ask Jeeves",
-  "MySpace",
-  "Friendster",
-  "Neopets",
-  "Homestar Runner",
-  "Newgrounds",
-  "Xanga",
-  "LiveJournal",
-  "Bolt.com",
-  "iVillage",
-  "Excite",
-  "Lycos",
-  "TheGlobe.com",
-  "Deja News",
-  "MP3.com",
-  "Kazaa",
-  "Angelfire"
+const expansionSeed = [
+  {
+    slug: "tripod",
+    name: "Tripod",
+    domain: "tripod.com",
+    years_active_start: 1994,
+    years_active_end: null,
+    category: "Personal/GeoCities",
+    status: "archived",
+    short_description:
+      "Free homepage hosting that helped early users publish personal sites without owning servers.",
+    peak_visitors: "Millions of hosted pages",
+    country_origin: "United States"
+  },
+  {
+    slug: "homestead",
+    name: "Homestead",
+    domain: "homestead.com",
+    years_active_start: 1996,
+    years_active_end: null,
+    category: "Personal/GeoCities",
+    status: "archived",
+    short_description:
+      "Site builder service that made small-business and personal web publishing easier in the dial-up era.",
+    peak_visitors: "Large SMB web-builder user base",
+    country_origin: "United States"
+  },
+  {
+    slug: "aol-hometown",
+    name: "AOL Hometown",
+    domain: "hometown.aol.com",
+    years_active_start: 1998,
+    years_active_end: 2008,
+    category: "Personal/GeoCities",
+    status: "gone",
+    short_description:
+      "AOL's personal page hosting service that introduced many mainstream users to first-time publishing.",
+    peak_visitors: "Major consumer ISP audience",
+    country_origin: "United States"
+  },
+  {
+    slug: "msn-spaces",
+    name: "MSN Spaces",
+    domain: "spaces.msn.com",
+    years_active_start: 2004,
+    years_active_end: 2011,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Microsoft's social blogging platform that linked profiles, photos, and personal updates before feed apps matured.",
+    peak_visitors: "Tens of millions of users",
+    country_origin: "United States"
+  },
+  {
+    slug: "webring",
+    name: "WebRing",
+    domain: "webring.com",
+    years_active_start: 1994,
+    years_active_end: 2020,
+    category: "Forums",
+    status: "gone",
+    short_description:
+      "Link circles that connected niche sites into discoverable communities before algorithmic recommendations.",
+    peak_visitors: "Hundreds of thousands of member sites",
+    country_origin: "United States"
+  },
+  {
+    slug: "blogrings",
+    name: "BlogRings",
+    domain: "blogrings.com",
+    years_active_start: 2003,
+    years_active_end: 2008,
+    category: "Forums",
+    status: "gone",
+    short_description:
+      "Blog discovery network that grouped independent writers into themed clusters.",
+    peak_visitors: "Large long-tail blogging footprint",
+    country_origin: "United States"
+  },
+  {
+    slug: "bebo",
+    name: "Bebo",
+    domain: "bebo.com",
+    years_active_start: 2005,
+    years_active_end: null,
+    category: "Social",
+    status: "reborn",
+    short_description:
+      "Social network that became especially influential in the UK and Ireland during the mid-2000s.",
+    peak_visitors: "40+ million users",
+    country_origin: "United Kingdom"
+  },
+  {
+    slug: "hi5",
+    name: "Hi5",
+    domain: "hi5.com",
+    years_active_start: 2003,
+    years_active_end: null,
+    category: "Social",
+    status: "reborn",
+    short_description:
+      "Profile-based social network with strong international growth before Facebook standardization.",
+    peak_visitors: "70+ million users",
+    country_origin: "United States"
+  },
+  {
+    slug: "orkut",
+    name: "Orkut",
+    domain: "orkut.com",
+    years_active_start: 2004,
+    years_active_end: 2014,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Google's early social network that dominated in Brazil and India for years.",
+    peak_visitors: "100+ million accounts",
+    country_origin: "United States"
+  },
+  {
+    slug: "google-plus",
+    name: "Google+",
+    domain: "plus.google.com",
+    years_active_start: 2011,
+    years_active_end: 2019,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Google's large social networking push built around circles and identity integration.",
+    peak_visitors: "Hundreds of millions of signed-up users",
+    country_origin: "United States"
+  },
+  {
+    slug: "yahoo-360",
+    name: "Yahoo! 360",
+    domain: "360.yahoo.com",
+    years_active_start: 2005,
+    years_active_end: 2009,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Yahoo's social blogging service combining profiles, lists, and friend updates.",
+    peak_visitors: "Large Yahoo account ecosystem",
+    country_origin: "United States"
+  },
+  {
+    slug: "sixdegrees",
+    name: "SixDegrees",
+    domain: "sixdegrees.com",
+    years_active_start: 1997,
+    years_active_end: 2001,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "One of the first recognizable social networking services built around friend graphs.",
+    peak_visitors: "Millions of registered users",
+    country_origin: "United States"
+  },
+  {
+    slug: "myyearbook",
+    name: "myYearbook",
+    domain: "myyearbook.com",
+    years_active_start: 2005,
+    years_active_end: 2012,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Teen-focused social platform that blended profiles, games, and chat features.",
+    peak_visitors: "Millions of active teen users",
+    country_origin: "United States"
+  },
+  {
+    slug: "blackplanet-classic",
+    name: "BlackPlanet (Classic)",
+    domain: "blackplanet.com",
+    years_active_start: 1999,
+    years_active_end: null,
+    category: "Social",
+    status: "reborn",
+    short_description:
+      "Major early social community with strong cultural identity and forum-style participation.",
+    peak_visitors: "Millions of member profiles",
+    country_origin: "United States"
+  },
+  {
+    slug: "friendfeed",
+    name: "FriendFeed",
+    domain: "friendfeed.com",
+    years_active_start: 2007,
+    years_active_end: 2015,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Real-time social aggregation service that influenced modern feed mechanics.",
+    peak_visitors: "High influence among power users",
+    country_origin: "United States"
+  },
+  {
+    slug: "jaiku",
+    name: "Jaiku",
+    domain: "jaiku.com",
+    years_active_start: 2006,
+    years_active_end: 2012,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Microblogging and presence-sharing platform acquired by Google during early social experimentation.",
+    peak_visitors: "Niche but influential user base",
+    country_origin: "Finland"
+  },
+  {
+    slug: "pownce",
+    name: "Pownce",
+    domain: "pownce.com",
+    years_active_start: 2007,
+    years_active_end: 2008,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Short-form sharing service remembered from the pre-consolidation social startup wave.",
+    peak_visitors: "Early-adopter social audience",
+    country_origin: "United States"
+  },
+  {
+    slug: "identica",
+    name: "Identi.ca",
+    domain: "identi.ca",
+    years_active_start: 2008,
+    years_active_end: 2013,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Open-source microblogging community centered on federated social ideas.",
+    peak_visitors: "Open web developer community",
+    country_origin: "Canada"
+  },
+  {
+    slug: "vine",
+    name: "Vine",
+    domain: "vine.co",
+    years_active_start: 2013,
+    years_active_end: 2017,
+    category: "Entertainment",
+    status: "gone",
+    short_description:
+      "Six-second looping video platform that shaped internet comedy and creator culture.",
+    peak_visitors: "200+ million monthly active users",
+    country_origin: "United States",
+    featured: true
+  },
+  {
+    slug: "bliptv",
+    name: "Blip.tv",
+    domain: "blip.tv",
+    years_active_start: 2005,
+    years_active_end: 2015,
+    category: "Entertainment",
+    status: "gone",
+    short_description:
+      "Independent web video hosting platform focused on creator-owned series.",
+    peak_visitors: "Millions of monthly video viewers",
+    country_origin: "United States"
+  },
+  {
+    slug: "veoh",
+    name: "Veoh",
+    domain: "veoh.com",
+    years_active_start: 2005,
+    years_active_end: 2010,
+    category: "Entertainment",
+    status: "gone",
+    short_description:
+      "Long-form internet video destination active during the pre-streaming platform race.",
+    peak_visitors: "Large early online video audience",
+    country_origin: "United States"
+  },
+  {
+    slug: "justin-tv",
+    name: "Justin.tv",
+    domain: "justin.tv",
+    years_active_start: 2007,
+    years_active_end: 2014,
+    category: "Entertainment",
+    status: "gone",
+    short_description:
+      "Live streaming service that later evolved into Twitch's core foundation.",
+    peak_visitors: "Millions of live-stream viewers",
+    country_origin: "United States",
+    featured: true
+  },
+  {
+    slug: "ustream",
+    name: "Ustream",
+    domain: "ustream.tv",
+    years_active_start: 2007,
+    years_active_end: 2016,
+    category: "Entertainment",
+    status: "reborn",
+    short_description:
+      "Mass-market live video platform used for events, news, and creator broadcasting.",
+    peak_visitors: "Major global live-stream footprint",
+    country_origin: "United States"
+  },
+  {
+    slug: "stage6",
+    name: "Stage6",
+    domain: "stage6.divx.com",
+    years_active_start: 2006,
+    years_active_end: 2008,
+    category: "Entertainment",
+    status: "gone",
+    short_description:
+      "High-quality video sharing platform tied to DivX before broadband video fully consolidated.",
+    peak_visitors: "Cult following for high-bitrate video",
+    country_origin: "United States"
+  },
+  {
+    slug: "metacafe",
+    name: "Metacafe",
+    domain: "metacafe.com",
+    years_active_start: 2003,
+    years_active_end: 2021,
+    category: "Entertainment",
+    status: "gone",
+    short_description:
+      "Short-form video portal that competed in the first generation of viral clip platforms.",
+    peak_visitors: "40+ million monthly visitors",
+    country_origin: "Israel"
+  },
+  {
+    slug: "revver",
+    name: "Revver",
+    domain: "revver.com",
+    years_active_start: 2005,
+    years_active_end: 2011,
+    category: "Entertainment",
+    status: "gone",
+    short_description:
+      "Video sharing startup known for early creator-revenue experiments.",
+    peak_visitors: "Prominent in early web video startup scene",
+    country_origin: "United States"
+  },
+  {
+    slug: "stickam",
+    name: "Stickam",
+    domain: "stickam.com",
+    years_active_start: 2005,
+    years_active_end: 2013,
+    category: "Entertainment",
+    status: "gone",
+    short_description:
+      "Live webcam social platform that mixed broadcasting with chatroom community culture.",
+    peak_visitors: "Strong youth and creator communities",
+    country_origin: "United States"
+  },
+  {
+    slug: "ytmnd",
+    name: "YTMND",
+    domain: "ytmnd.com",
+    years_active_start: 2004,
+    years_active_end: null,
+    category: "Entertainment",
+    status: "reborn",
+    short_description:
+      "Meme remix site for looping image and sound combinations that became an internet folklore engine.",
+    peak_visitors: "Large meme-community traffic in peak years",
+    country_origin: "United States"
+  },
+  {
+    slug: "break-com",
+    name: "Break.com",
+    domain: "break.com",
+    years_active_start: 1998,
+    years_active_end: 2018,
+    category: "Entertainment",
+    status: "gone",
+    short_description:
+      "Viral clip and humor destination prominent in early 2000s sharing culture.",
+    peak_visitors: "Major viral-video audience",
+    country_origin: "United States"
+  },
+  {
+    slug: "collegehumor-classic",
+    name: "CollegeHumor (Classic)",
+    domain: "collegehumor.com",
+    years_active_start: 1999,
+    years_active_end: null,
+    category: "Entertainment",
+    status: "reborn",
+    short_description:
+      "Internet comedy brand that evolved from viral site era into studio production.",
+    peak_visitors: "Millions of monthly visitors",
+    country_origin: "United States"
+  },
+  {
+    slug: "ebaumsworld",
+    name: "eBaum's World",
+    domain: "ebaumsworld.com",
+    years_active_start: 2001,
+    years_active_end: null,
+    category: "Entertainment",
+    status: "archived",
+    short_description:
+      "Viral media aggregator that shaped early internet humor circulation patterns.",
+    peak_visitors: "Large viral-content audience",
+    country_origin: "United States"
+  },
+  {
+    slug: "fark",
+    name: "Fark",
+    domain: "fark.com",
+    years_active_start: 1999,
+    years_active_end: null,
+    category: "Forums",
+    status: "archived",
+    short_description:
+      "Headline-link community with editorial humor and highly engaged comments.",
+    peak_visitors: "Long-running daily link audience",
+    country_origin: "United States"
+  },
+  {
+    slug: "digg-v1",
+    name: "Digg (v1-v3 Era)",
+    domain: "digg.com",
+    years_active_start: 2004,
+    years_active_end: null,
+    category: "News & Media",
+    status: "reborn",
+    short_description:
+      "Social news voting platform whose early versions heavily influenced modern feed ranking.",
+    peak_visitors: "40+ million monthly visitors",
+    country_origin: "United States",
+    featured: true
+  },
+  {
+    slug: "stumbleupon",
+    name: "StumbleUpon",
+    domain: "stumbleupon.com",
+    years_active_start: 2001,
+    years_active_end: 2018,
+    category: "News & Media",
+    status: "gone",
+    short_description:
+      "Serendipitous discovery engine that sent users to random, interest-matched web pages.",
+    peak_visitors: "Large browser-toolbar user base",
+    country_origin: "Canada",
+    featured: true
+  },
+  {
+    slug: "delicious",
+    name: "Delicious",
+    domain: "delicious.com",
+    years_active_start: 2003,
+    years_active_end: 2017,
+    category: "News & Media",
+    status: "gone",
+    short_description:
+      "Social bookmarking service that turned link curation into a public web practice.",
+    peak_visitors: "Core tool for bloggers and researchers",
+    country_origin: "United States"
+  },
+  {
+    slug: "furl",
+    name: "Furl",
+    domain: "furl.net",
+    years_active_start: 2003,
+    years_active_end: 2009,
+    category: "News & Media",
+    status: "gone",
+    short_description:
+      "Bookmarking and clipping service focused on preserving full web pages for later retrieval.",
+    peak_visitors: "Popular among early web curators",
+    country_origin: "United States"
+  },
+  {
+    slug: "ma-gnolia",
+    name: "Ma.gnolia",
+    domain: "ma.gnolia.com",
+    years_active_start: 2006,
+    years_active_end: 2009,
+    category: "News & Media",
+    status: "gone",
+    short_description:
+      "Community bookmarking service remembered for reliability incidents and eventual closure.",
+    peak_visitors: "Highly engaged curation community",
+    country_origin: "United States"
+  },
+  {
+    slug: "mixx",
+    name: "Mixx",
+    domain: "mixx.com",
+    years_active_start: 2007,
+    years_active_end: 2011,
+    category: "News & Media",
+    status: "gone",
+    short_description:
+      "Social news recommendation platform from the Digg competitor wave.",
+    peak_visitors: "Active voting and sharing community",
+    country_origin: "United States"
+  },
+  {
+    slug: "propeller",
+    name: "Propeller",
+    domain: "propeller.com",
+    years_active_start: 2006,
+    years_active_end: 2011,
+    category: "News & Media",
+    status: "gone",
+    short_description:
+      "User-submitted news portal launched by AOL to capture social discovery behavior.",
+    peak_visitors: "Large portal-distributed audience",
+    country_origin: "United States"
+  },
+  {
+    slug: "yahoo-answers",
+    name: "Yahoo! Answers",
+    domain: "answers.yahoo.com",
+    years_active_start: 2005,
+    years_active_end: 2021,
+    category: "Forums",
+    status: "gone",
+    short_description:
+      "Massive Q&A community that archived internet curiosity, jokes, and practical advice.",
+    peak_visitors: "200+ million global users",
+    country_origin: "United States",
+    featured: true
+  },
+  {
+    slug: "askville",
+    name: "Askville",
+    domain: "askville.amazon.com",
+    years_active_start: 2006,
+    years_active_end: 2013,
+    category: "Forums",
+    status: "gone",
+    short_description:
+      "Amazon's community question-answer platform from the pre-voice assistant era.",
+    peak_visitors: "Niche but active help community",
+    country_origin: "United States"
+  },
+  {
+    slug: "answerbag",
+    name: "Answerbag",
+    domain: "answerbag.com",
+    years_active_start: 2003,
+    years_active_end: 2022,
+    category: "Forums",
+    status: "gone",
+    short_description:
+      "Long-running community Q&A site with broad topics and casual knowledge sharing.",
+    peak_visitors: "Large long-tail Q&A archive",
+    country_origin: "United States"
+  },
+  {
+    slug: "formspring",
+    name: "Formspring",
+    domain: "formspring.me",
+    years_active_start: 2009,
+    years_active_end: 2013,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Anonymous and social Q&A platform that spread rapidly among teens.",
+    peak_visitors: "30+ million users",
+    country_origin: "United States"
+  },
+  {
+    slug: "spring-me",
+    name: "Spring.me",
+    domain: "spring.me",
+    years_active_start: 2013,
+    years_active_end: 2015,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Rebrand attempt after Formspring, unable to sustain prior momentum.",
+    peak_visitors: "Declining post-peak audience",
+    country_origin: "United States"
+  },
+  {
+    slug: "posterous",
+    name: "Posterous",
+    domain: "posterous.com",
+    years_active_start: 2008,
+    years_active_end: 2013,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Effortless blogging-by-email service popular with creators and startups.",
+    peak_visitors: "Strong creator and tech-community adoption",
+    country_origin: "United States"
+  },
+  {
+    slug: "xfire",
+    name: "Xfire",
+    domain: "xfire.com",
+    years_active_start: 2003,
+    years_active_end: 2015,
+    category: "Gaming",
+    status: "gone",
+    short_description:
+      "Gaming chat and session-tracking network used heavily by PC multiplayer communities.",
+    peak_visitors: "Millions of gamer accounts",
+    country_origin: "United States"
+  },
+  {
+    slug: "gamespy-arcade",
+    name: "GameSpy Arcade",
+    domain: "gamespyarcade.com",
+    years_active_start: 2000,
+    years_active_end: 2014,
+    category: "Gaming",
+    status: "gone",
+    short_description:
+      "Lobby and server-browser ecosystem for classic PC multiplayer titles.",
+    peak_visitors: "Huge installed base in PC gaming",
+    country_origin: "United States"
+  },
+  {
+    slug: "fileplanet",
+    name: "FilePlanet",
+    domain: "fileplanet.com",
+    years_active_start: 1997,
+    years_active_end: 2017,
+    category: "Gaming",
+    status: "gone",
+    short_description:
+      "Essential download hub for game demos, patches, and mods during broadband transition years.",
+    peak_visitors: "Millions of monthly downloads",
+    country_origin: "United States"
+  },
+  {
+    slug: "planetquake",
+    name: "PlanetQuake",
+    domain: "planetquake.com",
+    years_active_start: 1997,
+    years_active_end: 2015,
+    category: "Gaming",
+    status: "gone",
+    short_description:
+      "Community news and mod hub central to Quake and FPS fandom culture.",
+    peak_visitors: "Major FPS community traffic",
+    country_origin: "United States"
+  },
+  {
+    slug: "allakhazam",
+    name: "Allakhazam",
+    domain: "allakhazam.com",
+    years_active_start: 1999,
+    years_active_end: null,
+    category: "Gaming",
+    status: "archived",
+    short_description:
+      "Classic MMO database and strategy reference used by EverQuest players for years.",
+    peak_visitors: "High MMO guide traffic",
+    country_origin: "United States"
+  },
+  {
+    slug: "webvan",
+    name: "Webvan",
+    domain: "webvan.com",
+    years_active_start: 1999,
+    years_active_end: 2001,
+    category: "Shopping",
+    status: "gone",
+    short_description:
+      "Dot-com grocery delivery pioneer that expanded too quickly and collapsed.",
+    peak_visitors: "Large venture-backed urban customer base",
+    country_origin: "United States",
+    featured: true
+  },
+  {
+    slug: "pets-com",
+    name: "Pets.com",
+    domain: "pets.com",
+    years_active_start: 1998,
+    years_active_end: 2000,
+    category: "Shopping",
+    status: "gone",
+    short_description:
+      "Iconic dot-com retailer remembered for aggressive branding and rapid failure.",
+    peak_visitors: "Household-name dot-com brand reach",
+    country_origin: "United States",
+    featured: true
+  },
+  {
+    slug: "etoys",
+    name: "eToys",
+    domain: "etoys.com",
+    years_active_start: 1997,
+    years_active_end: 2001,
+    category: "Shopping",
+    status: "gone",
+    short_description:
+      "Online toy retail pioneer and major casualty of the first internet bubble.",
+    peak_visitors: "Leading online toy destination at peak",
+    country_origin: "United States"
+  },
+  {
+    slug: "boo-com",
+    name: "Boo.com",
+    domain: "boo.com",
+    years_active_start: 1998,
+    years_active_end: 2000,
+    category: "Shopping",
+    status: "gone",
+    short_description:
+      "Ambitious fashion e-commerce startup known for costly design and infrastructure overreach.",
+    peak_visitors: "Global PR visibility despite brief life",
+    country_origin: "United Kingdom"
+  },
+  {
+    slug: "kozmo",
+    name: "Kozmo.com",
+    domain: "kozmo.com",
+    years_active_start: 1998,
+    years_active_end: 2001,
+    category: "Shopping",
+    status: "gone",
+    short_description:
+      "Ultra-fast urban delivery startup offering snacks, videos, and convenience goods.",
+    peak_visitors: "Heavy metro demand during dot-com boom",
+    country_origin: "United States"
+  },
+  {
+    slug: "beenz",
+    name: "Beenz",
+    domain: "beenz.com",
+    years_active_start: 1998,
+    years_active_end: 2001,
+    category: "Shopping",
+    status: "gone",
+    short_description:
+      "Early web-reward digital currency experiment used for loyalty and engagement programs.",
+    peak_visitors: "High-profile online rewards adoption",
+    country_origin: "United Kingdom"
+  },
+  {
+    slug: "flooz",
+    name: "Flooz",
+    domain: "flooz.com",
+    years_active_start: 1999,
+    years_active_end: 2001,
+    category: "Shopping",
+    status: "gone",
+    short_description:
+      "Internet gift-currency startup that became a symbol of speculative e-commerce exuberance.",
+    peak_visitors: "High consumer marketing visibility",
+    country_origin: "United States"
+  },
+  {
+    slug: "alladvantage",
+    name: "AllAdvantage",
+    domain: "alladvantage.com",
+    years_active_start: 1999,
+    years_active_end: 2001,
+    category: "Shopping",
+    status: "gone",
+    short_description:
+      "Pay-to-surf model that rewarded users for screen time and ad exposure.",
+    peak_visitors: "Millions of registered users",
+    country_origin: "United States"
+  },
+  {
+    slug: "hotbot",
+    name: "HotBot",
+    domain: "hotbot.com",
+    years_active_start: 1996,
+    years_active_end: 2016,
+    category: "Search Engines",
+    status: "gone",
+    short_description:
+      "Fast, feature-rich search engine from the early portal competition era.",
+    peak_visitors: "Top-tier search traffic in late 1990s",
+    country_origin: "United States"
+  },
+  {
+    slug: "alltheweb",
+    name: "AlltheWeb",
+    domain: "alltheweb.com",
+    years_active_start: 1999,
+    years_active_end: 2011,
+    category: "Search Engines",
+    status: "gone",
+    short_description:
+      "Search engine known for clean interface and broad indexing before Yahoo integration.",
+    peak_visitors: "Widely used alternative search destination",
+    country_origin: "Norway"
+  },
+  {
+    slug: "webcrawler",
+    name: "WebCrawler",
+    domain: "webcrawler.com",
+    years_active_start: 1994,
+    years_active_end: null,
+    category: "Search Engines",
+    status: "reborn",
+    short_description:
+      "One of the first full-text web search engines, later surviving as a metasearch brand.",
+    peak_visitors: "Foundational early-web search traffic",
+    country_origin: "United States"
+  },
+  {
+    slug: "infospace-search",
+    name: "InfoSpace Search",
+    domain: "infospace.com",
+    years_active_start: 1996,
+    years_active_end: 2017,
+    category: "Search Engines",
+    status: "gone",
+    short_description:
+      "Meta-search and portal services provider behind multiple branded destinations.",
+    peak_visitors: "Large syndicated search footprint",
+    country_origin: "United States"
+  },
+  {
+    slug: "dmoz",
+    name: "DMOZ",
+    domain: "dmoz.org",
+    years_active_start: 1998,
+    years_active_end: 2017,
+    category: "Search Engines",
+    status: "gone",
+    short_description:
+      "Human-edited web directory that powered taxonomy and categorization across many sites.",
+    peak_visitors: "One of the largest volunteer web directories",
+    country_origin: "United States",
+    featured: true
+  },
+  {
+    slug: "mahalo",
+    name: "Mahalo",
+    domain: "mahalo.com",
+    years_active_start: 2007,
+    years_active_end: 2014,
+    category: "Search Engines",
+    status: "gone",
+    short_description:
+      "Human-curated search and how-to project from the web 2.0 content optimization era.",
+    peak_visitors: "Large SEO-era content audience",
+    country_origin: "United States"
+  },
+  {
+    slug: "mahalo-answers",
+    name: "Mahalo Answers",
+    domain: "mahalo.com/answers",
+    years_active_start: 2010,
+    years_active_end: 2014,
+    category: "Forums",
+    status: "gone",
+    short_description:
+      "Paid-and-community Q&A experiment linked to Mahalo's broader content strategy.",
+    peak_visitors: "Niche contributor and answerer base",
+    country_origin: "United States"
+  },
+  {
+    slug: "mister-wong",
+    name: "Mister Wong",
+    domain: "mister-wong.com",
+    years_active_start: 2006,
+    years_active_end: 2014,
+    category: "News & Media",
+    status: "gone",
+    short_description:
+      "European social bookmarking service popular in Germany during web 2.0.",
+    peak_visitors: "Large regional bookmarking audience",
+    country_origin: "Germany"
+  },
+  {
+    slug: "netvibes-classic",
+    name: "Netvibes (Classic Public Dashboards)",
+    domain: "netvibes.com",
+    years_active_start: 2005,
+    years_active_end: null,
+    category: "News & Media",
+    status: "reborn",
+    short_description:
+      "Personal dashboard homepage service central to RSS-era information workflows.",
+    peak_visitors: "Global productivity and RSS audience",
+    country_origin: "France"
+  },
+  {
+    slug: "squidoo",
+    name: "Squidoo",
+    domain: "squidoo.com",
+    years_active_start: 2005,
+    years_active_end: 2014,
+    category: "News & Media",
+    status: "gone",
+    short_description:
+      "User-generated topic pages monetized through affiliate and ad models.",
+    peak_visitors: "High long-tail search traffic",
+    country_origin: "United States"
+  },
+  {
+    slug: "hubpages-classic",
+    name: "HubPages (Classic Era)",
+    domain: "hubpages.com",
+    years_active_start: 2006,
+    years_active_end: null,
+    category: "News & Media",
+    status: "archived",
+    short_description:
+      "Revenue-sharing publishing platform emblematic of search-driven content economies.",
+    peak_visitors: "Large community writer network",
+    country_origin: "United States"
+  },
+  {
+    slug: "icq-homepage-builder",
+    name: "ICQ Homepage Builder",
+    domain: "members.icq.com",
+    years_active_start: 1998,
+    years_active_end: 2005,
+    category: "Personal/GeoCities",
+    status: "gone",
+    short_description:
+      "Personal page tooling connected to ICQ identity and messenger-era social life.",
+    peak_visitors: "Large messenger-linked creator base",
+    country_origin: "Israel"
+  },
+  {
+    slug: "multiply",
+    name: "Multiply",
+    domain: "multiply.com",
+    years_active_start: 2004,
+    years_active_end: 2013,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "Social blogging and photo-sharing platform with strong adoption in Southeast Asia.",
+    peak_visitors: "Millions of active users",
+    country_origin: "United States"
+  },
+  {
+    slug: "tagworld",
+    name: "TagWorld",
+    domain: "tagworld.com",
+    years_active_start: 2005,
+    years_active_end: 2008,
+    category: "Social",
+    status: "gone",
+    short_description:
+      "MySpace-era social network focused on media sharing and profile communities.",
+    peak_visitors: "Large youth social audience",
+    country_origin: "United States"
+  }
 ];
+
+const categorySpecials = {
+  Social: [
+    "Identity-first profiles and social graph dynamics",
+    "Strong community rituals and migration stories",
+    "Shaped later mainstream platform behaviors"
+  ],
+  Gaming: [
+    "Community-driven discovery and strategy sharing",
+    "Long-lived player knowledge archives",
+    "Bridge between hobbyist and mainstream game culture"
+  ],
+  "News & Media": [
+    "Crowdsourced discovery before modern feeds",
+    "Editorial and community curation loops",
+    "Captured a specific publishing-era economy"
+  ],
+  "Personal/GeoCities": [
+    "Lowered barriers to personal publishing",
+    "Distinctive hand-crafted design aesthetics",
+    "Preserved niche interests in independent pages"
+  ],
+  Shopping: [
+    "Early experiments in digital commerce logistics",
+    "High-growth and high-risk business models",
+    "Influenced modern online retail expectations"
+  ],
+  "Search Engines": [
+    "Pioneered navigation of a rapidly growing web",
+    "Competed across relevance, speed, and interface",
+    "Left infrastructure and behavior legacy"
+  ],
+  Forums: [
+    "Threaded community memory and participatory norms",
+    "Long-tail knowledge accumulation",
+    "Influenced Q&A and discussion design patterns"
+  ],
+  Entertainment: [
+    "Web-native creator culture and remix behavior",
+    "Viral distribution before algorithmic shorts",
+    "Defined aesthetics of a specific internet era"
+  ]
+};
+
+function buildExpandedStory(site) {
+  const endLabel = site.years_active_end || "the present";
+
+  return `${site.name} operated from ${site.years_active_start} to ${endLabel} and became part of the ${site.category.toLowerCase()} chapter of internet history. ${site.short_description}\n\nThe service gained traction through timing, community behavior, and the design constraints of its era. It is now preserved here as an exhibit to document how platform habits changed as the web moved from open experimentation to consolidated ecosystems.\n\nIts current museum status is \"${site.status}\", which helps trace whether the brand disappeared, survived in reduced form, or evolved into a successor path.`;
+}
+
+const expandedExhibits = expansionSeed.map((site) => {
+  const originalDomain = site.domain.startsWith("http")
+    ? site.domain
+    : `http://${site.domain}`;
+  const waybackDomain = site.domain.startsWith("http")
+    ? site.domain.replace(/^https?:\/\//, "")
+    : site.domain;
+
+  return {
+    slug: site.slug,
+    name: site.name,
+    url_original: originalDomain,
+    wayback_url: `https://web.archive.org/web/*/${waybackDomain}`,
+    successor_url: site.status === "gone" ? null : `https://${waybackDomain}`,
+    years_active_start: site.years_active_start,
+    years_active_end: site.years_active_end,
+    category: site.category,
+    status: site.status,
+    short_description: site.short_description,
+    full_story: buildExpandedStory(site),
+    peak_visitors: site.peak_visitors,
+    country_origin: site.country_origin,
+    what_made_it_special: categorySpecials[site.category],
+    thumbnail_url: "/icons/retro-site.svg",
+    featured: Boolean(site.featured),
+    created_at: "2026-03-24T00:00:00.000Z"
+  };
+});
+
+export const fallbackExhibits = [...baseExhibits, ...expandedExhibits];
+
+export const marqueeSites = fallbackExhibits.slice(0, 28).map((site) => site.name);
 
 export const eraRanges = [
   "1993-1996",
@@ -581,15 +1587,6 @@ export const eraRanges = [
   "2004-2007"
 ];
 
-export const categories = [
-  "Social",
-  "Gaming",
-  "News & Media",
-  "Personal/GeoCities",
-  "Shopping",
-  "Search Engines",
-  "Forums",
-  "Entertainment"
-];
+export const categories = [...new Set(fallbackExhibits.map((site) => site.category))];
 
 export const statuses = ["gone", "archived", "reborn"];

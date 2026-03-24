@@ -116,3 +116,34 @@ main {
 .pixel-dot {
   image-rendering: pixelated;
 }
+
+.skeleton {
+  background: linear-gradient(90deg, #172869, #22357f, #172869);
+  background-size: 200% 100%;
+  animation: marquee 1.4s linear infinite;
+}
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .app-shell::before,
+  header,
+  footer,
+  .retro-button {
+    display: none !important;
+  }
+
+  .retro-panel {
+    border: 1px solid #444;
+    box-shadow: none;
+    background: #fff;
+    color: #000;
+  }
+
+  main {
+    padding-top: 0;
+  }
+}

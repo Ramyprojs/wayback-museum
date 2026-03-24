@@ -6,6 +6,7 @@ export async function POST(request) {
   const slug = String(body.slug || "").trim();
   const memory = String(body.memory || "").trim();
   const handle = String(body.handle || "").trim();
+  const decadeTag = String(body.decadeTag || "").trim();
 
   if (!slug || memory.length < 8 || memory.length > 500) {
     return NextResponse.json({ error: "Invalid memory payload." }, { status: 400 });
@@ -25,6 +26,8 @@ export async function POST(request) {
     exhibit_id: exhibit.id,
     handle: handle || null,
     memory,
+    decade_tag: decadeTag || null,
+    upvotes: 0,
     flagged: false
   });
 

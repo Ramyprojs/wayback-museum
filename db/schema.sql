@@ -38,7 +38,23 @@ create table if not exists exhibits (
   short_description text not null,
   full_story text not null,
   peak_visitors text not null,
+  peak_registered_users text,
+  yoy_growth text,
+  valuation_peak text,
+  acquisition_price text,
+  employees_peak text,
+  bandwidth_peak text,
   country_origin text not null,
+  countries_served text,
+  founders jsonb not null default '[]'::jsonb,
+  timeline_events jsonb not null default '[]'::jsonb,
+  press_clippings jsonb not null default '[]'::jsonb,
+  snapshot_links jsonb not null default '[]'::jsonb,
+  legacy_influence text,
+  death_cause text,
+  competitors text[] not null default '{}',
+  inspired_by text[] not null default '{}',
+  acquired_by text,
   what_made_it_special text[] not null default '{}',
   thumbnail_url text not null,
   featured boolean not null default false,
@@ -50,6 +66,8 @@ create table if not exists community_memories (
   exhibit_id uuid not null references exhibits(id) on delete cascade,
   handle text,
   memory text not null check (char_length(memory) <= 500),
+  decade_tag text,
+  upvotes int not null default 0,
   flagged boolean not null default false,
   created_at timestamptz not null default now()
 );
@@ -69,6 +87,16 @@ create table if not exists pending_submissions (
   created_at timestamptz not null default now()
 );
 
+create table if not exists site_metrics (
+  metric_key text primary key,
+  metric_value bigint not null default 0,
+  updated_at timestamptz not null default now()
+);
+
 create index if not exists idx_exhibits_slug on exhibits(slug);
 create index if not exists idx_exhibits_featured on exhibits(featured);
 create index if not exists idx_memories_exhibit on community_memories(exhibit_id);
+
+insert into site_metrics (metric_key, metric_value)
+values ('visitors_total', 0)
+on conflict (metric_key) do nothing;

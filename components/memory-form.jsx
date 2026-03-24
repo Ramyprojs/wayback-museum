@@ -5,6 +5,7 @@ import { useState } from "react";
 export function MemoryForm({ slug }) {
   const [handle, setHandle] = useState("");
   const [memory, setMemory] = useState("");
+  const [decadeTag, setDecadeTag] = useState("2000s");
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -22,7 +23,7 @@ export function MemoryForm({ slug }) {
       const res = await fetch("/api/memories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug, handle, memory })
+        body: JSON.stringify({ slug, handle, memory, decadeTag })
       });
       const data = await res.json();
       if (!res.ok) {
@@ -56,6 +57,19 @@ export function MemoryForm({ slug }) {
         placeholder="I used this site after school and waited forever for images to load..."
         className="w-full border-2 border-[#f8f8f8] bg-[#0b1232] p-2 text-2xl"
       />
+      <div className="flex flex-wrap items-center gap-2">
+        <select
+          value={decadeTag}
+          onChange={(e) => setDecadeTag(e.target.value)}
+          className="border-2 border-[#f8f8f8] bg-[#0b1232] p-2 text-xl"
+        >
+          <option value="1990s">I was there in 1990s</option>
+          <option value="2000s">I was there in 2000s</option>
+          <option value="2010s">I was there in 2010s</option>
+          <option value="2020s">I discovered it later</option>
+        </select>
+        <p className="text-xl text-retro-electric">{memory.length}/500</p>
+      </div>
       <button disabled={busy} className="retro-button" type="submit">
         {busy ? "Saving..." : "Submit Memory"}
       </button>

@@ -1,5 +1,6 @@
 import "./globals.css";
 import { FooterBar } from "@/components/footer-bar";
+import { KeyboardShortcuts } from "@/components/keyboard-shortcuts";
 import { Taskbar } from "@/components/taskbar";
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
       <body>
         <div className="app-shell animate-flicker">
           <Taskbar />
+          <KeyboardShortcuts />
           <main className="mx-auto w-full max-w-[1200px] px-3 pb-14 sm:px-5">{children}</main>
           <FooterBar />
         </div>
