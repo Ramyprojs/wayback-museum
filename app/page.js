@@ -51,7 +51,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="retro-panel mt-4 p-4">
+      <section className="retro-panel mt-4 p-4 mobile-simple-hide">
         <h2 className="font-pixel text-[10px] text-retro-pink">On This Day in Internet History</h2>
         <ul className="mt-3 list-disc space-y-1 pl-6 text-2xl text-[#dff7ff]">
           {todayEvents.map((event, idx) => (
@@ -60,7 +60,7 @@ export default async function HomePage() {
         </ul>
       </section>
 
-      <section className="mt-4">
+      <section className="mt-4 mobile-simple-hide">
         <h2 className="font-pixel text-[10px] text-retro-yellow">Recently Added to Archive</h2>
         <div className="museum-grid mt-3">
           {recentlyAdded.map((item, idx) => (
@@ -69,7 +69,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mt-4">
+      <section className="mt-4 mobile-simple-hide">
         <h2 className="font-pixel text-[10px] text-retro-lime">Most Remembered</h2>
         <div className="museum-grid mt-3">
           {mostRemembered.map((item, idx) => (
@@ -78,7 +78,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="retro-panel mt-4 overflow-hidden p-2">
+      <section className="retro-panel mt-4 overflow-hidden p-2 mobile-simple-hide">
         <div className="marquee-track gap-10 whitespace-nowrap text-2xl text-retro-electric">
           {marqueeSites.concat(marqueeSites).map((name, index) => (
             <span key={`${name}-${index}`}>+++ {name} :: internet legend remembered here +++</span>

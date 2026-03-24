@@ -667,6 +667,16 @@ summary {
   .marquee-track {
     font-size: 14px;
   }
+
+  /* Mobile simplified mode: hide secondary content blocks */
+  .mobile-simple-hide {
+    display: none !important;
+  }
+
+  /* Keep mobile screen focused on primary content */
+  .music-player {
+    display: none;
+  }
 }
 
 /* Archive comparison mode responsive */

@@ -144,9 +144,14 @@ export function ArchiveBrowser({ exhibits }) {
 
         <FilterSelect label="Era" value={era} setValue={setEra} options={eraBuckets} />
         <FilterSelect label="Category" value={category} setValue={setCategory} options={categories} />
-        <FilterSelect label="Status" value={status} setValue={setStatus} options={statuses} />
-        <FilterSelect label="Death Cause" value={deathCause} setValue={setDeathCause} options={deathCauses} />
-        <FilterSelect
+        <div className="mobile-simple-hide">
+          <FilterSelect label="Status" value={status} setValue={setStatus} options={statuses} />
+        </div>
+        <div className="mobile-simple-hide">
+          <FilterSelect label="Death Cause" value={deathCause} setValue={setDeathCause} options={deathCauses} />
+        </div>
+        <div className="mobile-simple-hide">
+          <FilterSelect
           label="Sort"
           value={sortBy}
           setValue={setSortBy}
@@ -156,11 +161,12 @@ export function ArchiveBrowser({ exhibits }) {
             { label: "Year Died", value: "died" },
             { label: "Alphabetical", value: "alpha" }
           ]}
-        />
-        <button className="retro-button" onClick={surpriseMe}>
+          />
+        </div>
+        <button className="retro-button mobile-simple-hide" onClick={surpriseMe}>
           Surprise Me
         </button>
-        <button className="retro-button" onClick={() => setShowConnections((v) => !v)}>
+        <button className="retro-button mobile-simple-hide" onClick={() => setShowConnections((v) => !v)}>
           {showConnections ? "Hide Connections" : "Connections View"}
         </button>
       </aside>
@@ -170,7 +176,7 @@ export function ArchiveBrowser({ exhibits }) {
           Showing {filtered.length} exhibits :: Page {page}/{totalPages}
         </p>
 
-        <section className="retro-panel p-3">
+        <section className="retro-panel p-3 mobile-simple-hide">
           <p className="font-pixel text-[10px] text-retro-yellow">Comparison Mode</p>
           <div className="comparison-grid mt-2 grid gap-2 md:grid-cols-2">
             <select value={compareA} onChange={(e) => setCompareA(e.target.value)} className="border-2 border-[#f8f8f8] bg-[#0b1232] p-2 text-xl">

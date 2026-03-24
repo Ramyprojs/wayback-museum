@@ -17,10 +17,16 @@ const links = [
   { href: "/about", label: "About" }
 ];
 
+const mobileLinks = [
+  { href: "/", label: "Home" },
+  { href: "/archive", label: "Archive" },
+  { href: "/graveyard", label: "Graveyard" },
+  { href: "/submit", label: "Submit" }
+];
+
 export function Taskbar() {
   const [clock, setClock] = useState("00:00:00");
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [navOpen, setNavOpen] = useState(false);
   const [soundState, setSoundState] = useState(SoundEngine.getState());
 
   useEffect(() => {
@@ -47,12 +53,6 @@ export function Taskbar() {
           <span className="font-pixel text-[10px] text-retro-yellow">Wayback Museum</span>
         </div>
         <div className="flex items-center gap-1">
-          <button
-            className="retro-button px-2 py-1 text-[9px] lg:hidden"
-            onClick={() => setNavOpen((v) => !v)}
-          >
-            Menu
-          </button>
           <button
             className="retro-button px-2 py-1 text-[9px]"
             aria-label="Toggle sound mute"
@@ -97,27 +97,21 @@ export function Taskbar() {
 
       {/* Navigation bar */}
       <nav className="overflow-x-auto border-b-2 border-slate-200 px-3 py-1">
-        <div className="flex items-center gap-1">
+        <div className="hidden items-center gap-1 md:flex">
           {links.map((link) => (
             <Link key={link.href} className="retro-button whitespace-nowrap px-2 py-1 text-[8px]" href={link.href}>
               {link.label}
             </Link>
           ))}
         </div>
-      </nav>
-
-      {/* Mobile dropdown menu */}
-      {navOpen ? (
-        <div className="border-b-2 border-slate-200 bg-[#0f1633] px-3 py-2 lg:hidden">
-          <div className="grid grid-cols-2 gap-1">
-            {links.map((link) => (
-              <Link key={link.href} className="retro-button px-2 py-1 text-[8px]" href={link.href} onClick={() => setNavOpen(false)}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
+        <div className="grid grid-cols-4 gap-1 md:hidden">
+          {mobileLinks.map((link) => (
+            <Link key={link.href} className="retro-button px-1 py-1 text-[7px] text-center" href={link.href}>
+              {link.label}
+            </Link>
+          ))}
         </div>
-      ) : null}
+      </nav>
     </header>
   );
 }
