@@ -1,5 +1,7 @@
 import "./globals.css";
+import "@/styles/gameboy.css";
 import { FooterBar } from "@/components/footer-bar";
+import { GlobalEffects } from "@/components/global-effects";
 import { KeyboardShortcuts } from "@/components/keyboard-shortcuts";
 import { Taskbar } from "@/components/taskbar";
 
@@ -15,6 +17,7 @@ export default function RootLayout({ children }) {
         <div className="app-shell animate-flicker">
           <Taskbar />
           <KeyboardShortcuts />
+          <GlobalEffects />
           <main className="mx-auto w-full max-w-[1200px] px-3 pb-14 sm:px-5">{children}</main>
           <FooterBar />
         </div>

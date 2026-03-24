@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SoundEngine } from "@/lib/soundEngine";
 
 export function MemoryForm({ slug }) {
   const [handle, setHandle] = useState("");
@@ -13,6 +14,7 @@ export function MemoryForm({ slug }) {
     e.preventDefault();
     if (memory.trim().length < 8) {
       setStatus("Memory is too short.");
+      SoundEngine.play("error");
       return;
     }
 
@@ -32,8 +34,10 @@ export function MemoryForm({ slug }) {
       setMemory("");
       setHandle("");
       setStatus("Memory saved. Reload to see it in the timeline.");
+      SoundEngine.play("success");
     } catch (error) {
       setStatus(error.message || "Failed to submit memory.");
+      SoundEngine.play("error");
     } finally {
       setBusy(false);
     }

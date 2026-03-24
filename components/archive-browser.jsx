@@ -114,6 +114,12 @@ export function ArchiveBrowser({ exhibits }) {
     <section className="grid gap-4 md:grid-cols-[280px,1fr]">
       <aside className="retro-panel h-fit space-y-3 p-3">
         <h2 className="font-pixel text-[10px] text-retro-yellow">Filters</h2>
+        <div className="gb-sidebar-sprites" aria-hidden="true">
+          <span className="gb-sprite floppy" />
+          <span className="gb-sprite monitor" />
+          <span className="gb-sprite modem" />
+          <span className="gb-sprite cdrom" />
+        </div>
         <input
           id="archive-search"
           value={search}
@@ -200,8 +206,8 @@ export function ArchiveBrowser({ exhibits }) {
         ) : null}
 
         <div className="museum-grid">
-          {paged.map((item) => (
-            <ExhibitCard key={item.slug} exhibit={item} />
+          {paged.map((item, idx) => (
+            <ExhibitCard key={item.slug} exhibit={item} index={idx} />
           ))}
         </div>
         <div className="flex flex-wrap gap-2">

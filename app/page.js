@@ -45,8 +45,8 @@ export default async function HomePage() {
       <section className="mt-4">
         <h2 className="font-pixel text-[10px] text-retro-pink">Featured Exhibits</h2>
         <div className="museum-grid mt-3">
-          {featured.map((item) => (
-            <ExhibitCard key={item.slug} exhibit={item} />
+          {featured.map((item, idx) => (
+            <ExhibitCard key={item.slug} exhibit={item} index={idx} />
           ))}
         </div>
       </section>
@@ -63,8 +63,8 @@ export default async function HomePage() {
       <section className="mt-4">
         <h2 className="font-pixel text-[10px] text-retro-yellow">Recently Added to Archive</h2>
         <div className="museum-grid mt-3">
-          {recentlyAdded.map((item) => (
-            <ExhibitCard key={`recent-${item.slug}`} exhibit={item} />
+          {recentlyAdded.map((item, idx) => (
+            <ExhibitCard key={`recent-${item.slug}`} exhibit={item} index={idx} />
           ))}
         </div>
       </section>
@@ -72,8 +72,8 @@ export default async function HomePage() {
       <section className="mt-4">
         <h2 className="font-pixel text-[10px] text-retro-lime">Most Remembered</h2>
         <div className="museum-grid mt-3">
-          {mostRemembered.map((item) => (
-            <ExhibitCard key={`memory-${item.slug}`} exhibit={item} />
+          {mostRemembered.map((item, idx) => (
+            <ExhibitCard key={`memory-${item.slug}`} exhibit={item} index={idx} />
           ))}
         </div>
       </section>

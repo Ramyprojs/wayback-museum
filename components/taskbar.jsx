@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { SoundEngine } from "@/lib/soundEngine";
 
 const links = [
   { href: "/", label: "Home" },
@@ -18,6 +19,8 @@ const links = [
 
 export function Taskbar() {
   const [clock, setClock] = useState("00:00:00");
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [soundState, setSoundState] = useState(SoundEngine.getState());
 
   useEffect(() => {
     const tick = () => {
@@ -33,6 +36,8 @@ export function Taskbar() {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => SoundEngine.subscribe(setSoundState), []);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b-2 border-slate-200 bg-[#13205a] px-3 py-2 shadow-[0_2px_0_#000]">
       <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between gap-2">
@@ -47,7 +52,47 @@ export function Taskbar() {
             </Link>
           ))}
         </nav>
-        <div className="retro-panel px-3 py-1 text-xl leading-none text-retro-lime">{clock}</div>
+        <div className="flex items-center gap-2">
+          <button
+            className="retro-button px-2 py-1 text-[9px]"
+            aria-label="Toggle sound mute"
+            onClick={() => SoundEngine.toggleMute()}
+          >
+            {soundState.muted ? "MUTE" : "SND"}
+          </button>
+          <div className="relative">
+            <button className="retro-button px-2 py-1 text-[9px]" onClick={() => setSettingsOpen((v) => !v)}>
+              Settings
+            </button>
+            {settingsOpen ? (
+              <div className="retro-panel absolute right-0 top-9 z-[70] w-[240px] space-y-2 p-2 text-[#dff9ff]">
+                <label className="block text-xl">
+                  <span className="text-retro-yellow">Volume</span>
+                  <input
+                    type="range"
+                    min={0}
+                    max={100}
+                    value={Math.round(soundState.volume * 100)}
+                    onChange={(e) => SoundEngine.setVolume(Number(e.target.value) / 100)}
+                    className="w-full"
+                  />
+                </label>
+                <label className="flex items-center gap-2 text-xl">
+                  <input
+                    type="checkbox"
+                    checked={soundState.ambientMode}
+                    onChange={(e) => SoundEngine.setAmbientMode(e.target.checked)}
+                  />
+                  Ambient Mode
+                </label>
+                <button className="retro-button w-full text-[9px]" onClick={() => setSettingsOpen(false)}>
+                  Close
+                </button>
+              </div>
+            ) : null}
+          </div>
+          <div className="retro-panel px-3 py-1 text-xl leading-none text-retro-lime">{clock}</div>
+        </div>
       </div>
     </header>
   );

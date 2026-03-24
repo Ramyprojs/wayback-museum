@@ -1,6 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef } from "react";
+import { triggerPixelExplosion } from "@/lib/animations";
+import { SoundEngine } from "@/lib/soundEngine";
 import { RetroImage } from "@/components/retro-image";
 
 const statusMap = {
@@ -9,16 +12,43 @@ const statusMap = {
   reborn: "Reborn/Successor Exists"
 };
 
-export function ExhibitCard({ exhibit }) {
-  function saveToGraveyard() {
+export function ExhibitCard({ exhibit, index = 0 }) {
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const node = cardRef.current;
+    if (!node) {
+      return;
+    }
+
+    node.classList.add("gb-card");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+        node.style.setProperty("--gb-delay", `${index * 80}ms`);
+        node.classList.add("in-view");
+        observer.disconnect();
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  function saveToGraveyard(event) {
     const key = "wayback_saved_graveyard";
     const prev = JSON.parse(localStorage.getItem(key) || "[]");
     const next = Array.from(new Set([exhibit.slug, ...prev])).slice(0, 80);
     localStorage.setItem(key, JSON.stringify(next));
+    SoundEngine.play("coin");
+    triggerPixelExplosion(event.currentTarget);
   }
 
   return (
-    <article className="retro-panel group overflow-hidden transition duration-200 hover:brightness-110 hover:saturate-150">
+    <article ref={cardRef} className="retro-panel group relative overflow-hidden transition duration-200 hover:brightness-110 hover:saturate-150">
       <Link href={`/archive/${exhibit.slug}`} className="block">
       <div className="h-40 w-full border-b-2 border-slate-300 bg-[#071032]">
         <RetroImage src={exhibit.thumbnail_url} alt={`${exhibit.name} screenshot`} className="h-full w-full object-cover" />

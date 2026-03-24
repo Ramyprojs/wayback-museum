@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SoundEngine } from "@/lib/soundEngine";
 
 const categories = [
   "Social",
@@ -37,6 +38,13 @@ export function SubmitForm() {
 
   async function submit(e) {
     e.preventDefault();
+
+    if (!form.name.trim() || !form.url_original.trim() || !form.short_description.trim() || !form.why_it_deserves.trim()) {
+      setMessage("Please complete all required fields.");
+      SoundEngine.play("error");
+      return;
+    }
+
     setBusy(true);
     setMessage("Sending transmission...");
 
@@ -53,8 +61,10 @@ export function SubmitForm() {
       setDone(true);
       setMessage("Your message has been sent! A wizard will review your submission shortly.");
       setForm(initialState);
+      SoundEngine.play("success");
     } catch (error) {
       setMessage(error.message || "Submission failed.");
+      SoundEngine.play("error");
     } finally {
       setBusy(false);
     }

@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ExhibitSoundCue } from "@/components/exhibit-sound-cue";
 import { MemoryForm } from "@/components/memory-form";
 import { MemoryList } from "@/components/memory-list";
 import { RetroImage } from "@/components/retro-image";
+import { TypewriterText } from "@/components/typewriter-text";
 import { fallbackExhibits } from "@/data/exhibits";
 import { getExhibitBySlug, getExhibitMemories } from "@/lib/repository";
 
@@ -58,21 +60,32 @@ export default async function ExhibitPage({ params }) {
 
   return (
     <section className="space-y-4 pt-4">
+      <ExhibitSoundCue slug={exhibit.slug} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="retro-panel overflow-hidden">
         <div className="h-64 w-full border-b-2 border-slate-200 bg-[#0a1236] sm:h-80">
           <RetroImage src={exhibit.thumbnail_url} alt={`${exhibit.name} screenshot`} className="h-full w-full object-cover" />
         </div>
         <div className="space-y-3 p-4">
-          <h1 className="font-pixel text-sm text-retro-yellow blink-cursor">{exhibit.name}</h1>
+          <TypewriterText
+            as="h1"
+            text={exhibit.name}
+            sessionKey={`h1-${exhibit.slug}`}
+            className="font-pixel text-sm text-retro-yellow blink-cursor"
+            speed={35}
+          />
           <p className="text-3xl text-retro-electric">{exhibit.yearsLabel}</p>
           <div className="flex flex-wrap gap-2">
             <span className="retro-panel px-2 py-1 text-xl text-retro-lime">{exhibit.category}</span>
             <span className="retro-panel px-2 py-1 text-xl text-retro-pink">{statusLabels[exhibit.status]}</span>
           </div>
-          <blockquote className="border-l-4 border-retro-pink pl-3 text-3xl text-[#ddf5ff]">
-            "{exhibit.short_description}"
-          </blockquote>
+          <TypewriterText
+            as="blockquote"
+            text={`"${exhibit.short_description}"`}
+            sessionKey={`quote-${exhibit.slug}`}
+            className="border-l-4 border-retro-pink pl-3 text-3xl text-[#ddf5ff]"
+            speed={32}
+          />
         </div>
       </div>
 
@@ -82,7 +95,7 @@ export default async function ExhibitPage({ params }) {
           {String(exhibit.full_story)
             .split("\n\n")
             .map((paragraph, idx) => (
-              <p key={idx}>{paragraph}</p>
+              <TypewriterText key={idx} text={paragraph} sessionKey={`story-${exhibit.slug}-${idx}`} className="text-[1.65rem] leading-snug text-[#d4eeff]" />
             ))}
         </div>
       </article>
@@ -182,10 +195,14 @@ export default async function ExhibitPage({ params }) {
 
       <section className="retro-panel p-4">
         <h2 className="font-pixel text-[10px] text-retro-yellow">Legacy & Influence</h2>
-        <p className="mt-3 text-2xl text-[#dff7ff]">
-          {exhibit.legacy_influence ||
-            "This site helped define interaction patterns, business assumptions, and internet culture that modern platforms still echo."}
-        </p>
+        <TypewriterText
+          text={
+            exhibit.legacy_influence ||
+            "This site helped define interaction patterns, business assumptions, and internet culture that modern platforms still echo."
+          }
+          sessionKey={`legacy-${exhibit.slug}`}
+          className="mt-3 text-2xl text-[#dff7ff]"
+        />
       </section>
 
       <section className="retro-panel p-4">

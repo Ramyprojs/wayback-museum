@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { SoundEngine } from "@/lib/soundEngine";
 
 export function DialupSimulator() {
   const [url, setUrl] = useState("https://example.com");
@@ -26,10 +27,12 @@ export function DialupSimulator() {
     setRunning(true);
     setProgress(0);
     setLineIndex(0);
+    SoundEngine.play("dial_up", { volume: 0.5 });
 
     for (let i = 0; i < lines.length; i += 1) {
       setLineIndex(i);
       setProgress(Math.round(((i + 1) / lines.length) * 100));
+      SoundEngine.play("type", { volume: 0.4 });
       await new Promise((resolve) => setTimeout(resolve, 900));
     }
 

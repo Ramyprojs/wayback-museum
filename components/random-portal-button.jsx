@@ -1,6 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { triggerPortalFlash } from "@/lib/animations";
+import { SoundEngine } from "@/lib/soundEngine";
 
 export function RandomPortalButton({ slugs }) {
   const router = useRouter();
@@ -12,8 +14,11 @@ export function RandomPortalButton({ slugs }) {
         if (!slugs?.length) {
           return;
         }
+        SoundEngine.play("select");
+        SoundEngine.play("navigate", { volume: 0.8 });
+        triggerPortalFlash();
         const random = slugs[Math.floor(Math.random() * slugs.length)];
-        router.push(`/archive/${random}`);
+        window.setTimeout(() => router.push(`/archive/${random}`), 180);
       }}
     >
       Random Portal
