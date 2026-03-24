@@ -575,16 +575,28 @@ summary {
   }
 }
 
+/* Centered taskbar settings on all screens */
+.taskbar-settings {
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: 56px !important;
+  width: 260px;
+  max-width: 90vw;
+  z-index: 100;
+}
+
 /* Fix taskbar dropdown on mobile */
 @media (max-width: 680px) {
   .taskbar-settings {
-    position: fixed;
-    right: 0;
-    top: auto;
+    position: fixed !important;
+    right: auto;
+    top: auto !important;
     bottom: 62px;
-    left: 0;
-    width: 100%;
-    max-width: 100%;
+    left: 50% !important;
+    width: 90vw;
+    max-width: 300px;
+    transform: translateX(-50%) !important;
     border-radius: 0;
     margin: 0;
     z-index: 100;
@@ -594,8 +606,6 @@ summary {
 
   .taskbar-settings.retro-panel {
     box-shadow: 0 -2px 0 #000;
-    border-left: none;
-    border-right: none;
   }
 }
 
