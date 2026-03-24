@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useState } from "react";
 import { SoundEngine } from "@/lib/soundEngine";
 
@@ -31,6 +32,15 @@ export function SubmitForm() {
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (!message || busy || done || message === "Sending transmission...") {
+      return;
+    }
+
+    const timer = setTimeout(() => setMessage(""), 4200);
+    return () => clearTimeout(timer);
+  }, [message, busy, done]);
 
   function updateField(key, value) {
     setForm((prev) => ({ ...prev, [key]: value }));

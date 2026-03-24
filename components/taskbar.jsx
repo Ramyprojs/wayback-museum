@@ -61,8 +61,14 @@ export function Taskbar() {
             {soundState.muted ? "MUTE" : "SND"}
           </button>
           <div className="relative">
-            <button className="retro-button px-2 py-1 text-[9px] whitespace-nowrap" onClick={() => setSettingsOpen((v) => !v)}>
-              SETTI
+            <button
+              className="retro-button px-2 py-1 text-[9px] whitespace-nowrap"
+              title="Settings"
+              aria-label="Open settings"
+              onClick={() => setSettingsOpen((v) => !v)}
+            >
+              <span className="hidden sm:inline">SETTINGS</span>
+              <span className="sm:hidden">SET</span>
             </button>
             {settingsOpen ? (
               <div className="taskbar-settings retro-panel absolute left-1/2 top-9 z-[70] w-[260px] -translate-x-1/2 space-y-2 p-2 text-[#dff9ff]">

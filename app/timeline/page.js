@@ -15,10 +15,10 @@ export default function TimelinePage() {
       <div className="retro-panel p-4">
         <h1 className="font-pixel text-xs text-retro-yellow blink-cursor">Internet Era Timeline</h1>
       </div>
-      <div className="retro-panel overflow-auto p-4">
-        <div className="flex min-w-[980px] gap-3">
+      <div className="retro-panel overflow-x-auto p-4">
+        <div className="grid gap-3 md:grid-cols-2 xl:flex">
           {eras.map((era) => (
-            <article key={era.title} className="retro-panel w-[280px] p-3">
+            <article key={era.title} className="retro-panel p-3 xl:w-[280px]">
               <p className="font-pixel text-[9px] text-retro-pink">{era.years}</p>
               <p className="mt-2 text-2xl text-retro-lime">{era.title}</p>
               <p className="mt-2 text-xl text-retro-electric">Mood: {era.mood}</p>

@@ -77,6 +77,16 @@ main {
   background: linear-gradient(to bottom, #152560, #1b2d7a);
 }
 
+.retro-button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible {
+  outline: 2px solid #b6ff3a;
+  outline-offset: 2px;
+}
+
 .blink-cursor::after {
   content: '_';
   display: inline-block;

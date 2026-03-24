@@ -62,6 +62,9 @@ export default async function ExhibitPage({ params }) {
     <section className="space-y-4 pt-4">
       <ExhibitSoundCue slug={exhibit.slug} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Link href="/archive" className="retro-button inline-block text-[8px]">
+        Back to Archive
+      </Link>
       <div className="retro-panel overflow-hidden">
         <div className="h-64 w-full border-b-2 border-slate-200 bg-[#0a1236] sm:h-80">
           <RetroImage src={exhibit.thumbnail_url} alt={`${exhibit.name} screenshot`} className="h-full w-full object-cover" />
@@ -91,11 +94,16 @@ export default async function ExhibitPage({ params }) {
 
       <article className="retro-panel p-4">
         <h2 className="font-pixel text-[10px] text-retro-yellow">The Story</h2>
-        <div className="mt-3 space-y-4 text-[1.65rem] leading-snug text-[#d4eeff]">
+        <div className="mt-3 max-w-[72ch] space-y-4 text-[1.3rem] leading-snug text-[#d4eeff] sm:text-[1.45rem]">
           {String(exhibit.full_story)
             .split("\n\n")
             .map((paragraph, idx) => (
-              <TypewriterText key={idx} text={paragraph} sessionKey={`story-${exhibit.slug}-${idx}`} className="text-[1.65rem] leading-snug text-[#d4eeff]" />
+              <TypewriterText
+                key={idx}
+                text={paragraph}
+                sessionKey={`story-${exhibit.slug}-${idx}`}
+                className="text-[1.3rem] leading-snug text-[#d4eeff] sm:text-[1.45rem]"
+              />
             ))}
         </div>
       </article>

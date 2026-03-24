@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useState } from "react";
 import { SoundEngine } from "@/lib/soundEngine";
 
@@ -9,6 +10,15 @@ export function MemoryForm({ slug }) {
   const [decadeTag, setDecadeTag] = useState("2000s");
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    if (!status || busy || status === "Posting memory...") {
+      return;
+    }
+
+    const timer = setTimeout(() => setStatus(""), 4200);
+    return () => clearTimeout(timer);
+  }, [status, busy]);
 
   async function submit(e) {
     e.preventDefault();
@@ -44,7 +54,7 @@ export function MemoryForm({ slug }) {
   }
 
   return (
-    <form className="retro-panel mt-3 space-y-2 p-3" onSubmit={submit}>
+    <form className="retro-panel mt-3 space-y-3 sm:space-y-2 p-3" onSubmit={submit}>
       <p className="font-pixel text-[10px] text-retro-yellow">Share your memory</p>
       <input
         value={handle}

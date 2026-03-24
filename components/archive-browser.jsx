@@ -138,7 +138,7 @@ export function ArchiveBrowser({ exhibits }) {
           id="archive-search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search name, summary, or full story"
+          placeholder="Search exhibits..."
           className="w-full border-2 border-[#f8f8f8] bg-[#0b1232] p-2 text-2xl"
         />
 
