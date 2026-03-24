@@ -56,7 +56,21 @@ export function ArchiveBrowser({ exhibits }) {
         item.short_description.toLowerCase().includes(q) ||
         item.category.toLowerCase().includes(q) ||
         String(item.full_story || "").toLowerCase().includes(q);
-      const matchEra = era === "All" || item.era === era;
+      // Era filtering based on year ranges
+      let matchEra = era === "All";
+      if (!matchEra) {
+        const eraRanges = {
+          "1993-1996": { start: 1993, end: 1996 },
+          "1997-1999": { start: 1997, end: 1999 },
+          "2000-2003": { start: 2000, end: 2003 },
+          "2004-2007": { start: 2004, end: 2007 }
+        };
+        const range = eraRanges[era];
+        if (range) {
+          const itemStart = item.years_active_start || 2000;
+          matchEra = itemStart >= range.start && itemStart <= range.end;
+        }
+      }
       const matchCategory = category === "All" || item.category === category;
       const matchStatus = status === "All" || item.status === status;
       const matchDeathCause = deathCause === "All" || item.death_cause === deathCause;
