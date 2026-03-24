@@ -49,7 +49,7 @@ a {
 }
 
 main {
-  padding-top: 62px;
+  padding-top: 78px;
 }
 
 .retro-panel {
@@ -145,5 +145,22 @@ main {
 
   main {
     padding-top: 0;
+  }
+}
+
+/* Taskbar responsive styles */
+header nav {
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 1024px) {
+  main {
+    padding-top: 88px;
+  }
+}
+
+@media (max-width: 680px) {
+  main {
+    padding-top: 78px;
   }
 }

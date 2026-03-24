@@ -20,6 +20,7 @@ const links = [
 export function Taskbar() {
   const [clock, setClock] = useState("00:00:00");
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
   const [soundState, setSoundState] = useState(SoundEngine.getState());
 
   useEffect(() => {
@@ -39,20 +40,19 @@ export function Taskbar() {
   useEffect(() => SoundEngine.subscribe(setSoundState), []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b-2 border-slate-200 bg-[#13205a] px-3 py-2 shadow-[0_2px_0_#000]">
-      <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between gap-2">
+    <header className="fixed inset-x-0 top-0 z-50 border-b-2 border-slate-200 bg-[#13205a] shadow-[0_2px_0_#000]">
+      <div className="mb-2 flex items-center justify-between border-b-2 border-slate-200 px-3 py-2">
         <div className="flex items-center gap-2">
           <div className="retro-button bg-[#234198] px-2 py-2 text-[9px]">Start</div>
           <span className="font-pixel text-[10px] text-retro-yellow">Wayback Museum</span>
         </div>
-        <nav className="hidden items-center gap-2 sm:flex">
-          {links.map((link) => (
-            <Link key={link.href} className="retro-button text-[9px]" href={link.href}>
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
+          <button
+            className="retro-button px-2 py-1 text-[9px] lg:hidden"
+            onClick={() => setNavOpen((v) => !v)}
+          >
+            Menu
+          </button>
           <button
             className="retro-button px-2 py-1 text-[9px]"
             aria-label="Toggle sound mute"
@@ -61,8 +61,8 @@ export function Taskbar() {
             {soundState.muted ? "MUTE" : "SND"}
           </button>
           <div className="relative">
-            <button className="retro-button px-2 py-1 text-[9px]" onClick={() => setSettingsOpen((v) => !v)}>
-              Settings
+            <button className="retro-button px-2 py-1 text-[9px] whitespace-nowrap" onClick={() => setSettingsOpen((v) => !v)}>
+              SETTI
             </button>
             {settingsOpen ? (
               <div className="taskbar-settings retro-panel absolute left-1/2 top-9 z-[70] w-[260px] -translate-x-1/2 space-y-2 p-2 text-[#dff9ff]">
@@ -91,9 +91,33 @@ export function Taskbar() {
               </div>
             ) : null}
           </div>
-          <div className="retro-panel px-3 py-1 text-xl leading-none text-retro-lime">{clock}</div>
+          <div className="retro-panel px-2 py-1 text-[9px] leading-none text-retro-lime">{clock}</div>
         </div>
       </div>
+
+      {/* Navigation bar */}
+      <nav className="overflow-x-auto border-b-2 border-slate-200 px-3 py-1">
+        <div className="flex items-center gap-1">
+          {links.map((link) => (
+            <Link key={link.href} className="retro-button whitespace-nowrap px-2 py-1 text-[8px]" href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
+      {/* Mobile dropdown menu */}
+      {navOpen ? (
+        <div className="border-b-2 border-slate-200 bg-[#0f1633] px-3 py-2 lg:hidden">
+          <div className="grid grid-cols-2 gap-1">
+            {links.map((link) => (
+              <Link key={link.href} className="retro-button px-2 py-1 text-[8px]" href={link.href} onClick={() => setNavOpen(false)}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 }
